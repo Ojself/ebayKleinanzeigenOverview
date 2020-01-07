@@ -32,7 +32,7 @@ async function getArticlesFromKleinan() {
 }
 
 async function dataMassager(data) {
-  const regex = /<article class="aditem" data-adid="(.*?)<\/article>/gms
+  const regex = /<article class="aditem" data-adid="(.*?)<\/article>/gm // /<article class="aditem" data-adid="(.*?)<\/article>/gms
 
   // Strip out all the articles (n=27)
   const articles = data.match(regex)
@@ -50,7 +50,7 @@ async function dataMassager(data) {
 }
 
 function getImage(article) {
-  const regex = /data-imgsrcretina="https:(.*?)"/gms
+  const regex = /data-imgsrcretina="https:(.*?)"/gm ///data-imgsrcretina="https:(.*?)"/gms
 
   let image = article.match(regex)
   if (image === null) {
@@ -59,8 +59,8 @@ function getImage(article) {
   return image.map(el => el.replace('data-imgsrcretina="', '').slice(0, -3))
 }
 function getTitle(article) {
-  const regex = /data-imgtitle="(.*?)"/gms
-  const regex2 = /<h2 class="text-module-begin">(.*?)<\/a>/gms
+  const regex = /data-imgtitle="(.*?)"/gm ///data-imgtitle="(.*?)"/gms
+  const regex2 = /<h2 class="text-module-begin">(.*?)<\/a>/gm // /<h2 class="text-module-begin">(.*?)<\/a>/gms
   let title = article.match(regex)
   // searching for the title..
   if (title === null) {
@@ -74,7 +74,7 @@ function getTitle(article) {
   return title.map(el => el.replace('data-imgtitle="', '').slice(0, -1))
 }
 function getPrice(article) {
-  const regex = /<strong>(.*?)<\/strong>/gms
+  const regex = /<strong>(.*?)<\/strong>/gm // /<strong>(.*?)<\/strong>/gms
   let price = article.match(regex)
   if (price === null) {
     return 'no price'
