@@ -6,22 +6,22 @@ export default function Home() {
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    const interval = setInterval(() => {
-      setLoading(true)
-      api
-        .getArticles()
-        .then(articles => {
-          console.log(articles)
-          if (articles.message) {
-            setMessage(articles.message)
-          } else {
-            setArticles(articles.body)
-          }
-          setLoading(false)
-        })
-        .catch(err => console.log(err))
-    }, 1000 * 45)
-    return () => clearInterval(interval)
+    /* const interval = setInterval(() => {
+      setLoading(true) */
+    api
+      .getArticles()
+      .then(articles => {
+        console.log(articles)
+        if (articles.message) {
+          setMessage(articles.message)
+        } else {
+          setArticles(articles.body)
+        }
+        setLoading(false)
+      })
+      .catch(err => console.log(err))
+    /* }, 1000 * 45)
+    return () => clearInterval(interval) */
   }, [])
 
   const articleComponent = loading ? (
